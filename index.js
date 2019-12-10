@@ -9,7 +9,8 @@ exports.start = function (){
     });
     
     app.post('/deployment/updatetheapp', (req, res) => {
-        shell.exec('./deploy.sh')
+        var cmd = "echo ========================================================;echo ------------------- Updater Script ---------------------;echo ---------------- Connecting to GitHub ------------------;git pull;echo -------------- Updating Node modules -------------------;npm update;echo ------------------Update completed----------------------;exit"
+        shell.exec(cmd)
         res.send({"message":"Update in progress"})
     });
 }
