@@ -1,4 +1,4 @@
-# NodeJS-ADS
+# NodeJS-ADS [![Build Status](https://travis-ci.com/pranavms13/NodeJS-ADS.svg?branch=master)](https://travis-ci.com/pranavms13/NodeJS-ADS)
 
 Simple Module for Deploying updates from GitHub using NodeJS.
 
