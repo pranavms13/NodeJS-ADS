@@ -1,31 +1,32 @@
-
 const express = require('express');
 const app = express();
 const shell = require('shelljs');
 var payload = require('request-payload');
-//const crypto = require('crypto');
+const crypto = require('crypto');
 
-exports.start = function (){
-    var hmac;
-    app.listen(1025, () => { 
+exports.start = function (secret){
+    var hmac,hash;
+    app.listen(1025, () => {
         console.log('Update Port : ' + 1025);
     });
-    
+
     app.post('/deployment/updatetheapp', (req, res) => {
-        var rhash = req.headers['X-Hub-Signature'];
+        var rhash = req.headers['x-hub-signature'];
         payload(req, function(body) {
-            hmac = crypto.createHmac('sha1','pranav')
-            hmac.update(JSON.stringify(body)).digest('hex');
-            if(rhash=='sha1='+hmac){
+            hmac = crypto.createHmac('sha1',secret)
+            hmac.update(body);
+            hash = hmac.digest('hex');
+            hash = 'sha1=' + hash;
+            if(rhash==hash){
                 console.log("verified");
+                var cmd = "echo ========================================================;echo ------------------- Updater Script ---------------------;echo ---------------- Connecting to GitHub ------------------;git pull;echo -------------- Updating Node modules -------------------;npm update;npm install;echo ------------------Update completed----------------------;exit"
+                res.send({"message":"Update in progress"})
+                shell.exec(cmd)
             }
             else{
                 console.log("Not Verified");
+                res.send({"message":"Invalid Hash !!. Update Not verified !"})
             }
         });
-        
-        //var cmd = "echo ========================================================;echo ------------------- Updater Script ---------------------;echo ---------------- Connecting to GitHub ------------------;git pull;echo -------------- Updating Node modules -------------------;npm update;npm install;echo ------------------Update completed----------------------;exit"
-        //shell.exec(cmd)
-        res.send({"message":"Update in progress"})
     });
 }
