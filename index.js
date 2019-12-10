@@ -10,5 +10,6 @@ exports.start = function (){
     
     app.get('/deployment/updatetheapp', (req, res) => {
         shell.exec('./deploy.sh')
+        res.send({"message":"Update in progress"})
     });
 }
