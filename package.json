@@ -1,6 +1,6 @@
 {
   "name": "nodejs-ads",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple NodeJS AutoDeployment System",
   "main": "index.js",
   "scripts": {
