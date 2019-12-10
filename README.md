@@ -35,15 +35,7 @@ updater.start("YOUR_SECRET_KEY", PORT);
 - Check the **Active** Box and click on **Add Webhook**.
 
 ### Working
-
-```mermaid
-sequenceDiagram
-GitHub ->> Your Server: PUSH event Payload + Payload Hash
-Your Server ->> Your Server : Verifies The Authenticity
-Your Server ->> GitHub : git pull
-GitHub -->> Your Server: Changes in Repository
-Your Server ->> Your Server : Refreshes Node Modules and restarts the app.
-```
+![Working](https://gist.githubusercontent.com/pranavms13/7b3c0a242d6fea3234c9159c83b58f5b/raw/b24474f005fe0fec0fb656a7da641ee147c5c600/uml.svg?sanitize=true)
 
 #### Donations to
 
