@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-ads",
+  "version": "1.0.0",
+  "description": "Simple NodeJS AutoDeployment System",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranavms13/NodeJS-ADS.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Deploy",
+    "AutoDeploy",
+    "Server"
+  ],
+  "author": "Pranav M S",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/pranavms13/NodeJS-ADS/issues"
+  },
+  "homepage": "https://github.com/pranavms13/NodeJS-ADS#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "shelljs": "^0.8.3"
+  }
+}
