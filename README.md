@@ -27,6 +27,10 @@ Then the pm2 process of the current running instance is restarted to update the 
 - Select ``Just the push event`` under **Which events would you like to trigger this webhook?** 
 - And Click on **Add WebHook**
 
-#### Donations to  ``pranavms13@apl``
+#### Donations to  
+- ``pranavms13@apl``
+- XMR : ``84B2PEVJjenN31h8HcnY4uCFPVcicxvVCAJAYVeYnPLoHkaVGHHWpVxCm6Gn9beEir2CjffgEoXtiDjpAZCmy4ap6uUXT8Y``
+- BTC : ``3Jg45PbpUNtASL5uvQSeJKZyiExqbB9mbC``
+
 
 ## PR's are welcome
