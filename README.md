@@ -1,36 +1,57 @@
-# NodeJS-ADS 
-Simple NodeJS Auto Deployment Tool.
+# NodeJS-ADS
 
-## What is this ?
+Simple Module for Deploying updates from GitHub using NodeJS.
 
-This is a simple tool used to deploy your package **(GitHub Repo)** to a Server.
-The NodeJS Script Opens a path which when called, runs the [deploy.sh](https://github.com/pranavms13/NodeJS-ADS/blob/master/deploy.sh) file.
-The [deploy.sh](https://github.com/pranavms13/NodeJS-ADS/blob/master/deploy.sh)  file, navigates to the repository folder and pulls the new changes.
-It then re-sync's all the node modules to make sure of the newly added/removed or changed modules.
-Then the pm2 process of the current running instance is restarted to update the changes.
+## What is this ??
 
-## Prerequisites 
-- A Server with Static IP / Tunneling Service.
+This is a simple tool used to deploy your package **(GitHub Repo)** to a Server when a **PUSH** event has occurred on the Repository. The NodeJS Script runs on a Specfied port  and waits for the call. To call the script, we setup a WebHook on Github. Whenever a **PUSH** event occurs, GitHub POST's the details of the push to a given **Payload URL**. When the Script receives the payload, it verifies the authenticity of the payload. Once it is verified, the updates are pulled from GitHub repository and all the Node Modules are re-synced. Once the above operations are completed, the app which is running on **pm2** is restarted.
 
-## Changes to be made before setup
-- Change the Repository Folder Names in [deploy.sh](https://github.com/pranavms13/NodeJS-ADS/blob/master/deploy.sh#L6) 
-- Change the pm2 instance details [deploy.sh](https://github.com/pranavms13/NodeJS-ADS/blob/master/deploy.sh#L17-L18) 
+## Prerequisites
 
-## How to Connect GitHub Repo WebHook.
+-   A Server with Static IP / Tunneling Service.
 
-- Open your Repository on GitHub.
-- Go to **Settings** tab.
-- Select **WebHooks** in the Left-menu.
-- Click on **Add WebHook** button.
-- Continue by Authenticating.
-- Set Payload URL to: ``http://<your-ip-address-or-domain>:1025/deployment/updatetheapp``
-- Select ``Just the push event`` under **Which events would you like to trigger this webhook?** 
-- And Click on **Add WebHook**
+## Install
+```
+npm install nodejs-ads --save
+```
 
-#### Donations to  
-- UPI : ``pranavms13@apl``
-- XMR : ``84B2PEVJjenN31h8HcnY4uCFPVcicxvVCAJAYVeYnPLoHkaVGHHWpVxCm6Gn9beEir2CjffgEoXtiDjpAZCmy4ap6uUXT8Y``
-- BTC : ``3Jg45PbpUNtASL5uvQSeJKZyiExqbB9mbC``
+## Usage
 
+Example
+```
+var updater = require('nodejs-ads')
+updater.start("YOUR_SECRET_KEY", PORT);
+```
+### GitHub Repo Configuration (Setting up Webhook and Secret)
+- Navigate to Repository **Settings**.
+- Select **Webhooks** and Click on **Add Webhook**.
+- Enter the Payload URL as ``http://YOUR_IP_OR_DOMAIN:PORT/deployment/updatetheapp``
+	- ``PORT`` is the port number used in the ``updater.start`` function.
+	* Alternatively you can also use ``TUNNELING_URL/deployment/updatetheapp`` 
+- Change **Content Type** to ``application/json``.
+- Enter  ``YOUR_SECRET_KEY`` in the **Secret** Field.
+	* ``YOUR_SECRET_KEY`` is the key used in the ``updater.start`` function.
+- Select ``Just the push event`` under **Which events would you like to trigger this webhook?**
+- Check the **Active** Box and click on **Add Webhook**.
 
-## PR's are welcome
+### Working
+
+```mermaid
+sequenceDiagram
+GitHub ->> Your Server: PUSH event Payload + Payload Hash
+Your Server ->> Your Server : Verifies The Authenticity
+Your Server ->> GitHub : git pull
+GitHub -->> Your Server: Changes in Repository
+Your Server ->> Your Server : Refreshes Node Modules and restarts the app.
+```
+
+#### Donations to
+
+-   UPI :  `pranavms13@apl`
+-   XMR :  `84B2PEVJjenN31h8HcnY4uCFPVcicxvVCAJAYVeYnPLoHkaVGHHWpVxCm6Gn9beEir2CjffgEoXtiDjpAZCmy4ap6uUXT8Y`
+-   BTC :  `3Jg45PbpUNtASL5uvQSeJKZyiExqbB9mbC`
+
+#### Suggestions ?
+[nodejs-ads@pranavms.ml](mailto:nodejs-ads@pranavms.ml)
+
+## PR's are welcome.
