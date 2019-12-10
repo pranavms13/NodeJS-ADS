@@ -4,10 +4,10 @@ const shell = require('shelljs');
 var payload = require('request-payload');
 const crypto = require('crypto');
 
-exports.start = function (secret){
+exports.start = function (secret,port){
     var hmac,hash;
     app.listen(1025, () => {
-        console.log('Update Port : ' + 1025);
+        console.log('Update Port : ' + port);
     });
 
     app.post('/deployment/updatetheapp', (req, res) => {
