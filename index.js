@@ -6,7 +6,6 @@ const crypto = require('crypto');
 
 exports.start = function (secret,port){
     var hmac,hash;
-    var opsys = process.platform;
     
     app.listen(port, () => {
         console.log('Update Port : ' + port);
