@@ -9,6 +9,7 @@ This is a simple tool used to deploy your package **(GitHub Repo)** to a Server 
 ## Prerequisites
 
 -   A Server with Static IP / Tunneling Service.
+-	That Server running on Linux.
 
 ## Install
 ```
