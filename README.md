@@ -1,4 +1,6 @@
-# NodeJS-ADS [![Build Status](https://travis-ci.com/pranavms13/NodeJS-ADS.svg?branch=master)](https://travis-ci.com/pranavms13/NodeJS-ADS)
+# NodeJS-ADS 
+
+[![Build Status](https://travis-ci.com/pranavms13/NodeJS-ADS.svg?branch=master)](https://travis-ci.com/pranavms13/NodeJS-ADS) [![npm version](https://badge.fury.io/js/nodejs-ads.svg)](https://badge.fury.io/js/nodejs-ads)
 
 Simple Module for Deploying updates from GitHub using NodeJS.
 
